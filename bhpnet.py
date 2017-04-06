@@ -122,11 +122,11 @@ def client_handler(client_socket):
     if command:
         while True:
             # show a simple prompt
-            client_socket.send("<BHP:#> ")
+            client_socket.send("<BHP:#> ".encode())
             # now we receive until we see a linefeed (enter key)
             cmd_buffer = ""
             while "\n" not in cmd_buffer:
-                cmd_buffer += client_socket.recv(1024)
+                cmd_buffer =cmd_buffer+ client_socket.recv(1024).decode()
             # send back the command output
             response = run_command(cmd_buffer)
             # send back the response
